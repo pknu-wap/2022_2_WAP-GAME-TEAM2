@@ -6,7 +6,7 @@ public class PlayerManager : MovingObject
 {
     static public PlayerManager instance;
 
-    public string currentMapName;               // transferMap ½ºÅ©¸³Æ®¿¡ ÀÖ´Â TransferMapName º¯¼öÀÇ °ªÀ» ÀúÀå
+    public string currentMapName;               // transferMap ï¿½ï¿½Å©ï¿½ï¿½Æ®ï¿½ï¿½ ï¿½Ö´ï¿½ TransferMapName ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
     public string currentSceneName;
 
     public string walkSound_1;
@@ -35,7 +35,7 @@ public class PlayerManager : MovingObject
         {
             queue = new Queue<string>(); 
 
-            // ¸Ê ÀÌµ¿ ½Ã destroy¸¦ ¸·´Â´Ù.
+            // ï¿½ï¿½ ï¿½Ìµï¿½ ï¿½ï¿½ destroyï¿½ï¿½ ï¿½ï¿½ï¿½Â´ï¿½.
             DontDestroyOnLoad(this.gameObject);
             boxCollider = GetComponent<BoxCollider2D>();
             animator = GetComponent<Animator>();
@@ -45,7 +45,7 @@ public class PlayerManager : MovingObject
         }
         else
         {
-            // ¾ÀÀ» ÀÌµ¿ÇÏÀÚ¸¶ÀÚ »õ·Î »ý¼ºµÈ MovingObject´Â »èÁ¦ µÈ´Ù.
+            // ï¿½ï¿½ï¿½ï¿½ ï¿½Ìµï¿½ï¿½ï¿½ï¿½Ú¸ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ MovingObjectï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½È´ï¿½.
             Destroy(this.gameObject);
         }
     }
@@ -72,39 +72,38 @@ public class PlayerManager : MovingObject
                 vector.y = 0;
             }
 
-            // ¾Ö´Ï¸ÞÀÌ¼Ç ÆÄ¶ó¹ÌÅÍ ¼³Á¤
+            // ï¿½Ö´Ï¸ï¿½ï¿½Ì¼ï¿½ ï¿½Ä¶ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
             animator.SetFloat("DirX", vector.x);
             animator.SetFloat("DirY", vector.y);
 
             bool checkCollisionFlag = base.CheckCollision();
             if (checkCollisionFlag)
-            {
                 break;
-            }
+            
 
             animator.SetBool("Walking", true);
 
-            // »ç¿îµå 1 ~ 4 Áß ·£´ý Ãâ·Â
+            // ï¿½ï¿½ï¿½ï¿½ 1 ~ 4 ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½
             int temp = Random.Range(1, 2);
-            switch (temp)
-            {
-                case 1:
-                    theAudio.Play(walkSound_1);
-                    break;
-                case 2:
-                    theAudio.Play(walkSound_2);
-                    break;
-                case 3:
-                    theAudio.Play(walkSound_3);
-                    break;
-                case 4:
-                    theAudio.Play(walkSound_4);
-                    break;
-            }
+            // switch (temp)
+            // {
+            //     case 1:
+            //         theAudio.Play(walkSound_1);
+            //         break;
+            //     case 2:
+            //         theAudio.Play(walkSound_2);
+            //         break;
+            //     case 3:
+            //         theAudio.Play(walkSound_3);
+            //         break;
+            //     case 4:
+            //         theAudio.Play(walkSound_4);
+            //         break;
+            // }
 
             boxCollider.offset = new Vector2(vector.x * 0.7f * speed * walkCount, vector.y * 0.7f * speed * walkCount);
 
-            // 20¹ø ¿òÁ÷ÀÓÀÌ ½ÇÇà
+            // 20ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
             while (currentWalkCount < walkCount)
             {
                 if (vector.x != 0)
@@ -128,7 +127,7 @@ public class PlayerManager : MovingObject
                     boxCollider.offset = Vector2.zero;
                 }
 
-                // ÃÊ°¡ ÀÛÀ» ¼ö·Ï Ä³¸¯ÅÍ°¡ ÀÚ¿¬½º·´°Ô ¿òÁ÷ÀÎ´Ù. 
+                // ï¿½Ê°ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ Ä³ï¿½ï¿½ï¿½Í°ï¿½ ï¿½Ú¿ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Î´ï¿½. 
                 yield return new WaitForSeconds(0.005f);
             }
             currentWalkCount = 0;
