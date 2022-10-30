@@ -61,6 +61,8 @@ public class AudioManager : MonoBehaviour
     [SerializeField]
     public Sound[] sounds;
 
+    private int nowPlayBGM;
+
     private void Awake()
     {
         if (instance == null)
@@ -82,10 +84,23 @@ public class AudioManager : MonoBehaviour
             // Hierachy에 soundObject가 들어가도록
             soundObject.transform.SetParent(this.transform);
         }
-        Play("Title");
+        //PlayBGM("Title");
     }
 
-    public void Play(string _name)
+    public void PlayBGM(string _name)
+    {
+        for(int i = 0; i < sounds.Length; i++)
+        {
+            if (_name == sounds[i].name)
+            {
+                nowPlayBGM = i;
+                sounds[i].Play();
+                return;
+            }
+        }
+    }
+    
+    public void PlaySFX(string _name)
     {
         for(int i = 0; i < sounds.Length; i++)
         {
@@ -123,16 +138,9 @@ public class AudioManager : MonoBehaviour
         }
     }
 
-    public void Stop(string _name)
+    public void Stop()
     {
-        for (int i = 0; i < sounds.Length; i++)
-        {
-            if (_name == sounds[i].name)
-            {
-                sounds[i].Stop();
-                return;
-            }
-        }
+        sounds[nowPlayBGM].Stop();
     }
 
     public void SetLoop(string _name, bool state)
