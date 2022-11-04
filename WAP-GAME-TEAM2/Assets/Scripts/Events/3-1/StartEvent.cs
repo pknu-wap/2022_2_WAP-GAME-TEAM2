@@ -18,10 +18,11 @@ public class StartEvent : MonoBehaviour
     [SerializeField] private string mistery;
     [SerializeField] private string floor4;
     
-    [SerializeField] private Light2D flashLight;
+    private Light2D flashLight;
     
     void Start()
     {
+        flashLight = FindObjectOfType<Light2D>();
         theAudio = AudioManager.instance;
         theDial = DialogueManager.instance;
         theFade = FadeManager.instance;
@@ -31,6 +32,7 @@ public class StartEvent : MonoBehaviour
         {
             theEvent.isEventIng = true;
             theEvent.switches[(int)SwitchType.StartEvent] = true;
+            thePlayer.transform.position = new Vector3(0.5f, -1.5f, transform.position.z);
             StartCoroutine(StartEventCoroutine());
         }
     }
@@ -38,7 +40,7 @@ public class StartEvent : MonoBehaviour
     IEnumerator StartEventCoroutine()
     {
         theFade.FadeIn();
-        PlayerController.instance.isPause = true;
+        PlayerController.instance.IsPause = true;
         yield return new WaitForSeconds(2f);
         theAudio.PlaySFX(bell);
         yield return new WaitForSeconds(7.5f);
@@ -77,7 +79,7 @@ public class StartEvent : MonoBehaviour
         yield return new WaitForSeconds(1f);
         theDial.ShowText(dials[6]);
         yield return new WaitUntil(() => theDial.nextDialogue == true);
-        PlayerController.instance.isPause = false;
+        PlayerController.instance.IsPause = false;
         theEvent.isEventIng = false;
     }
 }

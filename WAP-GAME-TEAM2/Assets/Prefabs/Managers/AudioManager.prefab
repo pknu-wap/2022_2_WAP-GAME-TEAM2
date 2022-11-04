@@ -76,6 +76,16 @@ MonoBehaviour:
     volume: 1
     pitch: 1
     loop: 0
+  - name: Decision
+    clip: {fileID: 8300000, guid: 13f52f005471b4849ab70d9149a1edef, type: 3}
+    volume: 1
+    pitch: 1
+    loop: 0
+  - name: Detect
+    clip: {fileID: 8300000, guid: 13f52f005471b4849ab70d9149a1edef, type: 3}
+    volume: 1
+    pitch: 1
+    loop: 0
 --- !u!81 &8282243632900502260
 AudioListener:
   m_ObjectHideFlags: 0

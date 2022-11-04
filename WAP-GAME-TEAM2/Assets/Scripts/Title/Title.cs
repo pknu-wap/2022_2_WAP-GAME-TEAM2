@@ -6,7 +6,9 @@ using UnityEngine.SceneManagement;
 public class Title : MonoBehaviour
 {
     private AudioManager theAudio;
-    private FadeManager theFade; 
+    private FadeManager theFade;
+
+    [SerializeField] private Animator newGameAnim;
     void Start()
     {
         theFade = FadeManager.instance;
@@ -16,9 +18,7 @@ public class Title : MonoBehaviour
 
     public void NewGame()
     {
-        theAudio.PlaySFX("Cursor");
-        theFade.FadeOut();
-        SceneManager.LoadScene("4Floor");
+        StartCoroutine(NewGameCoroutine());
     }
 
     
@@ -26,5 +26,14 @@ public class Title : MonoBehaviour
     public void OnButton()
     {
         AudioManager.instance.PlaySFX("Cursor");
+    }
+
+    IEnumerator NewGameCoroutine()
+    {
+        newGameAnim.SetTrigger("Start");
+        theAudio.PlaySFX("Cursor");
+        theFade.FadeOut(0.05f);
+        yield return new WaitForSeconds(1f);
+        SceneManager.LoadScene("3-1");
     }
 }

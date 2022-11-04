@@ -2,3 +2,4 @@ Resource filter=lfs diff=lfs merge=lfs -text
 WAP-GAME-TEAM2 filter=lfs diff=lfs merge=lfs -text
 시작발표.pptx filter=lfs diff=lfs merge=lfs -text
 lld filter=lfs diff=lfs merge=lfs -text
+WAP-GAME-TEAM2/Library/ArtifactDB filter=lfs diff=lfs merge=lfs -text
