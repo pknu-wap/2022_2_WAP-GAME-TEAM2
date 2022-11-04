@@ -44,11 +44,8 @@ TagManager:
   - name: Tile
     uniqueID: 3314765123
     locked: 0
-  - name: StaticObject
+  - name: AnotherObject
     uniqueID: 3185600907
-    locked: 0
-  - name: MovingObject
-    uniqueID: 1884612901
     locked: 0
   - name: UI
     uniqueID: 2157931891

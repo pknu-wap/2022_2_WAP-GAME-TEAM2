@@ -2,13 +2,13 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-// 커스텀 클래스는 Inspector창에 보이지 않는다.
+// Ŀ???? ??????? Inspector??? ?????? ??´?.
 [System.Serializable]
 public class Sound
 {
-    public string name;         // 사운드 이름
+    public string name;         // ???? ???
 
-    public AudioClip clip;      // 사운드 파일
+    public AudioClip clip;      // ???? ????
     private AudioSource source;
     
     [Range(0f, 1f)]
@@ -61,7 +61,7 @@ public class AudioManager : MonoBehaviour
     [SerializeField]
     public Sound[] sounds;
 
-    private int nowPlayBGM;
+    public int nowPlayBGM;
 
     private void Awake()
     {
@@ -79,12 +79,12 @@ public class AudioManager : MonoBehaviour
     {
         for (int i = 0; i < sounds.Length; i++)
         {
-            GameObject soundObject = new GameObject("사운드 파일 이름 : " + i + " = " + sounds[i].name);
+            GameObject soundObject = new GameObject("???? ???? ??? : " + i + " = " + sounds[i].name);
             sounds[i].SetSource(soundObject.AddComponent<AudioSource>());
-            // Hierachy에 soundObject가 들어가도록
+            // Hierachy?? soundObject?? ???????
             soundObject.transform.SetParent(this.transform);
         }
-        //PlayBGM("Title");
+       // PlayBGM("Title");
     }
 
     public void PlayBGM(string _name)

@@ -13,7 +13,12 @@ public class PlayerController : MonoBehaviour
     private float _fApplyRunSpeed;
     private bool _bRunFlag;
     private bool _bCanMove;
-    public bool isPause;
+    private bool isPause; 
+    public bool IsPause
+    {
+        get => isPause;
+        set => isPause = value;
+    }
 
     [SerializeField] private int iWalkCount;
     private int _curWalkCount;
@@ -56,14 +61,13 @@ public class PlayerController : MonoBehaviour
 
     void Update()
     {
-        
         if (!isPause && (Input.GetAxisRaw("Horizontal") != 0|| Input.GetAxisRaw("Vertical") != 0) && _bCanMove)
         {
             _bCanMove = false;
             StartCoroutine(PlayerMoveCoroutine());
         }
         
-        flashLight.gameObject.transform.position = new Vector2(transform.position.x, transform.position.y + 0.5f);
+        //flashLight.gameObject.transform.position = new Vector2(transform.position.x, transform.position.y + 0.5f);
     }
 
     IEnumerator PlayerMoveCoroutine()
@@ -143,5 +147,4 @@ public class PlayerController : MonoBehaviour
 
         _anim.SetFloat(_dir, val);
     }
-
 }

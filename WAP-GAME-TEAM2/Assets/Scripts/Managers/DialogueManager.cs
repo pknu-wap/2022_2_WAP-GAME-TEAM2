@@ -49,7 +49,7 @@ public class DialogueManager : MonoBehaviour
     public void ShowText(string[] _sentences)
     {
         talking = true;
-        PlayerController.instance.isPause = true;
+        PlayerController.instance.IsPause = true;
 
         for (int i = 0; i < _sentences.Length; i++)
         {
@@ -62,7 +62,7 @@ public class DialogueManager : MonoBehaviour
     public void ShowText(string _sentences)
     {
         talking = true;
-        PlayerController.instance.isPause = true;
+        PlayerController.instance.IsPause = true;
         
         listSentences.Add(_sentences);
         StartCoroutine(StartTextCoroutine());
@@ -87,7 +87,7 @@ public class DialogueManager : MonoBehaviour
         listSentences.Clear();
         talking = false;
         if (!theEvent.isEventIng)
-            PlayerController.instance.isPause = false;
+            PlayerController.instance.IsPause = false;
         nextDialogue = true;
     }
 
